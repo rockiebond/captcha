@@ -74,6 +74,17 @@ func SetCustomStore(s Store) {
 	globalStore = s
 }
 
+func NewEx() (string, []byte) {
+	return NewLenEx(DefaultLen)
+}
+
+func NewLenEx(length int) (id string, value []byte) {
+	id = randomId()
+	value = RandomDigits(length)
+	globalStore.Set(id, value)
+	return
+}
+
 // New creates a new captcha with the standard length, saves it in the internal
 // storage and returns its id.
 func New() string {
